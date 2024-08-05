@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selector de mapas - Potros League</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <img src="PotrosLeague.png" alt="Potros League Logo" class="left">
+        <h1 class="title">
+            Selector de mapas - Potros League
+            <img src="PVL.png" alt="PVL Logo" class="right">
+        </h1>
+    </div>
+    <div class="team-inputs">
+        <label for="team_a">Equipo A:</label>
+        <input type="text" id="team_a" value="Equipo A">
+        <label for="team_b">Equipo B:</label>
+        <input type="text" id="team_b" value="Equipo B">
+        <button class="set-teams-button" onclick="setTeams()">Establecer Equipos</button>
+    </div>
+    <div class="map-buttons-container" id="map-buttons">
+        <!-- Map buttons will be inserted here -->
+    </div>
+    <div class="selected-maps-container">
+        <div class="turn-indicator" id="turn-indicator">Turno de Equipo A ban</div>
+        <button class="undo-button" onclick="undoLast()">Deshacer</button>
+        <div class="selected-maps" id="selected-maps-list">
+            <!-- Selected maps will be displayed here -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
