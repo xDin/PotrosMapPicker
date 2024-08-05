@@ -5,7 +5,6 @@ let teamB = "Equipo B";
 let history = [];
 let sidePickers = []; // Store which team gets to pick the side for each map
 let sideDecisions = 0; // Track the number of side decisions
-
 function setTeams() {
     teamA = document.getElementById('team_a').value;
     teamB = document.getElementById('team_b').value;
@@ -62,15 +61,6 @@ function selectMap(map) {
     updateTurnIndicator();
 }
 
-function pickSide(index, side) {
-    results[index].side = side === 'Ataque' ? 'atacar' : 'defender';
-    sideDecisions++; // Increment side decisions count
-    history.push({ action: `Lado - ${results[index].picker} elige lado`, map: results[index].map, maps: [...maps] }); // Register the side pick
-    renderResults();
-    updateTurnIndicator(); // Move to the next turn after picking the side
-    renderMapButtons(false); // Enable map buttons
-}
-
 function undoLast() {
     if (history.length > 0) {
         const last = history.pop();
@@ -99,8 +89,6 @@ function undoLast() {
     }
 }
 
-
-
 function updateTurnIndicator() {
     const turnIndicator = document.getElementById('turn-indicator');
     const turns = [
@@ -128,7 +116,6 @@ function updateTurnIndicator() {
         turnIndicator.style.color = '#bbbb1f'; // Yellow for completed
     }
 }
-
 
 function renderResults() {
     const selectedMapsList = document.getElementById('selected-maps-list');
@@ -171,13 +158,22 @@ function renderResults() {
                 const sideCard = document.createElement('div');
                 sideCard.className = 'side-card';
                 const picker = result.picker ? result.picker : (result.side === 'atacar' ? teamB : teamA);
-                sideCard.innerHTML = `${picker} decidio ${result.side}`;
+                sideCard.textContent = `${picker} decidió ${result.side}`;
                 mapCardContainer.appendChild(sideCard);
             }
         }
 
         selectedMapsList.appendChild(mapCardContainer);
     });
+}
+
+function pickSide(index, side) {
+    results[index].side = side === 'Ataque' ? 'atacar' : 'defender';
+    sideDecisions++; // Increment side decisions count
+    history.push({ action: `Lado - ${results[index].picker} elige lado`, map: results[index].map, maps: [...maps] }); // Register the side pick
+    renderResults();
+    updateTurnIndicator(); // Move to the next turn after picking the side
+    renderMapButtons(false); // Enable map buttons
 }
 
 renderMapButtons();
