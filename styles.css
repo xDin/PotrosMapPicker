@@ -137,7 +137,9 @@ input {
     flex-wrap: wrap;
     justify-content: center; /* Center the buttons */
     margin: 20px 0;
+    min-height: 100px; /* Ajusta este valor según tus necesidades */
 }
+
 
 .map-button {
     margin: 5px;
@@ -234,7 +236,7 @@ input {
 .map-card.ban::after {
     content: 'X';
     color: #d62418;
-    font-size: 72px; /* Incrementa el tamaño de la X */
+    font-size: 128px; /* Incrementa el tamaño de la X */
     font-weight: bold;
     position: absolute;
     top: 40%; /* Ajusta la posición hacia arriba */
@@ -247,6 +249,8 @@ input {
 .map-card.ban {
     background-color: rgba(0, 0, 0, 0.6); /* Hacer el fondo más oscuro */
 }
+
+
 
 
 .map-card.pick .info {
