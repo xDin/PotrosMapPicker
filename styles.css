@@ -12,6 +12,20 @@
     justify-content: flex-end;
     overflow: hidden;
 }
+.map-card .map-name {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    z-index: 2; /* Asegúrate de que esté por encima de la imagen del mapa */
+    text-align: center;
+    width: 90%;
+}
+
 .map-card .info {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 10px;
@@ -20,7 +34,12 @@
     font-weight: bold;
     box-shadow: 0 0 25px rgba(0, 0, 0, 1); 
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
 }
+
 .map-card.ban .info {
     background-color: #ff6347;
 }

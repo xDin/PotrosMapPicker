@@ -61,26 +61,48 @@ function selectMap(map) {
     renderMapButtons();
     updateTurnIndicator();
 }
-
 function undoLast() {
     if (history.length > 0) {
-        const last = history.pop();
-        results = results.filter(r => r.map !== last.map);
-        maps = last.maps;
+        const turnIndicator = document.getElementById('turn-indicator').textContent;
 
-        // Check if the last action was a side pick
-        if (last.action.includes('Lado')) {
+        // Check if the current state is "Completado"
+        if (turnIndicator === 'Completado') {
+            // Pop the last two actions if "Completado"
+            const last = history.pop();
+            const previous = history.pop();
+            
+            results = results.filter(r => r.map !== last.map);
+            results = results.filter(r => r.map !== previous.map);
+            maps = previous.maps;
+
+            // Adjust side decisions and side pickers
             sideDecisions--;
             sidePickers.pop();
-        } else if (last.action.includes('Pick') || last.action === 'Mapa Decisor') {
-            sidePickers.pop();
-
-            // Check if the action before the last one was a side pick
-            if (history.length > 0 && history[history.length - 1].action.includes('Lado')) {
-                const previous = history.pop();
-                results = results.filter(r => r.map !== previous.map);
-                maps = previous.maps;
+            if (previous.action.includes('Lado')) {
                 sideDecisions--;
+                sidePickers.pop();
+            }
+
+        } else {
+            // Normal undo logic
+            const last = history.pop();
+            results = results.filter(r => r.map !== last.map);
+            maps = last.maps;
+
+            // Check if the last action was a side pick
+            if (last.action.includes('Lado')) {
+                sideDecisions--;
+                sidePickers.pop();
+            } else if (last.action.includes('Pick') || last.action === 'Mapa Decisor') {
+                sidePickers.pop();
+
+                // Check if the action before the last one was a side pick
+                if (history.length > 0 && history[history.length - 1].action.includes('Lado')) {
+                    const previous = history.pop();
+                    results = results.filter(r => r.map !== previous.map);
+                    maps = previous.maps;
+                    sideDecisions--;
+                }
             }
         }
 
@@ -133,10 +155,16 @@ function renderResults() {
         } else if (result.action.includes('Pick') || result.action === 'Mapa Decisor') {
             mapCard.classList.add(result.action.includes('Pick') ? 'pick' : 'decider');
         }
-        
+
+        // Añadir el nombre del mapa en la parte superior
+        const mapName = document.createElement('div');
+        mapName.className = 'map-name';
+        mapName.textContent = result.map;
+        mapCard.appendChild(mapName);
+
         const info = document.createElement('div');
         info.className = 'info';
-        info.innerHTML = `${result.displayAction}<br>${result.map}`;
+        info.innerHTML = `${result.displayAction}`;
         mapCard.appendChild(info);
         mapCardContainer.appendChild(mapCard);
 
@@ -167,6 +195,7 @@ function renderResults() {
         selectedMapsList.appendChild(mapCardContainer);
     });
 }
+
 
 function pickSide(index, side) {
     results[index].side = side === 'Ataque' ? 'atacar' : 'defender';
