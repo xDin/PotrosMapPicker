@@ -173,7 +173,7 @@ input {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); 
+    background: rgba(0, 0, 0, 0.35); 
     z-index: 1;
 }
 
@@ -202,7 +202,7 @@ input {
     display: flex;
     flex-direction: column;
     margin: 5px;
-    width: 150px; /* Set fixed width */
+    width: 175px; /* Set fixed width */
     align-items: center; /* Center the cards */
 }
 
@@ -246,10 +246,26 @@ input {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Optional: add some shadow for better visibility */
 }
 
-.map-card.ban {
-    background-color: rgba(0, 0, 0, 0.6); /* Hacer el fondo más oscuro */
+.map-card.ban::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35); /* Capa negra transparente */
+    z-index: 1; /* Asegúrate de que esté por encima de la imagen del mapa */
+    pointer-events: none; /* Ensure it doesn't interfere with any click events */
 }
 
+.map-card.ban {
+    position: relative;
+}
+
+.map-card.ban .info {
+    position: relative;
+    z-index: 2; /* Asegúrate de que el texto esté por encima de la capa negra */
+}
 
 
 
