@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Selector de mapas - Potros League</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="header">
@@ -22,9 +23,9 @@
     <div class="map-buttons-container" id="map-buttons">
         <!-- Map buttons will be inserted here -->
     </div>
+    <div class="turn-indicator" id="turn-indicator">Turno de Equipo A ban</div>
+    <button class="undo-button" onclick="undoLast()">Deshacer</button>
     <div class="selected-maps-container">
-        <div class="turn-indicator" id="turn-indicator">Turno de Equipo A ban</div>
-        <button class="undo-button" onclick="undoLast()">Deshacer</button>
         <div class="selected-maps" id="selected-maps-list">
             <!-- Selected maps will be displayed here -->
         </div>
