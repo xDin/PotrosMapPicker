@@ -88,8 +88,8 @@ body {
 .header {
     display: flex;
     align-items: center;
-    padding: 20px;
     justify-content: center;
+    padding-top: 5px;
 }
 
 .header img.left {
@@ -154,11 +154,12 @@ input {
     height: 100px; 
     display: inline-block;
     text-align: center;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: bold;
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
+    border-radius: 7px;
 }
 
 .map-button span {
@@ -181,14 +182,13 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 0;
+    padding-bottom: 10px;
 }
 
 .turn-indicator {
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    margin-top: 10px;
 }
 
 .selected-maps { 
