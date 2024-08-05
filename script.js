@@ -5,6 +5,7 @@ let teamB = "Equipo B";
 let history = [];
 let sidePickers = []; // Store which team gets to pick the side for each map
 let sideDecisions = 0; // Track the number of side decisions
+
 function setTeams() {
     teamA = document.getElementById('team_a').value;
     teamB = document.getElementById('team_b').value;
@@ -51,9 +52,9 @@ function selectMap(map) {
     } else if (results.length == 6) {
         action = 'Mapa Decisor';
         displayAction = 'Mapa Decisor';
-        sidePickers.push(teamA); // Assuming team A picks the side for the decider
+        sidePickers.push(teamB); // Team B picks the side for the decider
     }
-    results.push({ action, displayAction, map, picker: sidePickers[results.length - 2] });
+    results.push({ action, displayAction, map, picker: sidePickers[sidePickers.length - 1] });
     history.push({ action, map, maps: [...maps] });
     maps = maps.filter(m => m !== map);
     renderResults();
@@ -96,7 +97,7 @@ function updateTurnIndicator() {
         `Pick - Turno de ${teamA}`, `Lado - ${teamB} elige lado`, 
         `Pick - Turno de ${teamB}`, `Lado - ${teamA} elige lado`,
         `Ban - Turno de ${teamB}`, `Ban - Turno de ${teamA}`,
-        `Mapa Decisor`, `Lado - ${teamA} elige lado`
+        `Mapa Decisor`, `Lado - ${teamB} elige lado`
     ];
     const turnIndex = results.length + sideDecisions;
     if (turnIndex < turns.length) {
@@ -157,7 +158,7 @@ function renderResults() {
             } else {
                 const sideCard = document.createElement('div');
                 sideCard.className = 'side-card';
-                const picker = result.picker ? result.picker : (result.side === 'atacar' ? teamB : teamA);
+                const picker = result.picker; // Use result.picker to get the correct picker
                 sideCard.textContent = `${picker} decidió ${result.side}`;
                 mapCardContainer.appendChild(sideCard);
             }

@@ -223,6 +223,7 @@ input {
 .map-card {
     height: 250px;
     margin-bottom: 5px; /* Ensure there is space between the map card and side card */
+    box-shadow: inset 0px 0px 20px 0px rgba(0, 0, 0, 0.7);
 }
 
 .side-card {
@@ -235,7 +236,7 @@ input {
 
 .map-card.ban::after {
     content: 'X';
-    color: #d62418;
+    color: #ff0000;
     font-size: 128px; /* Incrementa el tamaño de la X */
     font-weight: bold;
     position: absolute;
@@ -243,7 +244,8 @@ input {
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none; /* Ensure it doesn't interfere with any click events */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Optional: add some shadow for better visibility */
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8); /* Optional: add some shadow for better visibility */
+    
 }
 
 .map-card.ban::before {
@@ -265,16 +267,19 @@ input {
 .map-card.ban .info {
     position: relative;
     z-index: 2; /* Asegúrate de que el texto esté por encima de la capa negra */
+    box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
 }
 
 
 
 .map-card.pick .info {
     background-color: #1e90ff; 
+    box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
 }
 
 .map-card.decider .info {
     background-color: #bbbb1f;
+    box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
 }
 
 .side-pick-buttons {
