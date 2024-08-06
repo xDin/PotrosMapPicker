@@ -26,7 +26,26 @@
             Selector de mapas - Potros League
             <img src="PVL.png" alt="PVL Logo" class="right">
         </h1>
+        <img src="settings-icon.png" alt="Settings Icon" class="settings-icon" onclick="toggleSettings()">
     </div>
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleSettings()">&times;</span>
+            <div class="team-inputs">
+                <div class="input-group">
+                    <label for="team_a">Equipo A:</label>
+                    <input type="text" id="team_a" value="Equipo A">
+                </div>
+                <div class="input-group">
+                    <label for="team_b">Equipo B:</label>
+                    <input type="text" id="team_b" value="Equipo B">
+                </div>
+            </div>
+            <button class="set-teams-button" onclick="setTeams()">Establecer Equipos</button>
+        </div>
+        
+    </div>
+    <!--
     <div class="team-inputs">
         <div class="input-group">
             <label for="team_a">Equipo A:</label>
@@ -37,8 +56,8 @@
             <input type="text" id="team_b" value="Equipo B">
         </div>
        
-    </div>
-    <button class="set-teams-button" onclick="setTeams()">Establecer Equipos</button>
+    </div> -->
+    
     
     <div class="map-buttons-container" id="map-buttons">
         <!-- Map buttons will be inserted here -->
@@ -68,5 +87,24 @@
             zoom: 1.10,
         });
     </script>
+    <script>
+        function toggleSettings() {
+            var modal = document.getElementById("settings-modal");
+            if (modal.classList.contains("show-modal")) {
+                modal.classList.remove("show-modal");
+                setTimeout(function() {
+                    modal.style.display = "none";
+                }, 500); // Match the transition duration
+            } else {
+                modal.style.display = "block";
+                setTimeout(function() {
+                    modal.classList.add("show-modal");
+                }, 10); // A slight delay to allow the display to apply before starting the transition
+            }
+        }
+        </script>
+        
+        
+        
 </body>
 </html>
