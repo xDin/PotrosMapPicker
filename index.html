@@ -86,6 +86,21 @@
             speed: 0.50,
             zoom: 1.10,
         });
+        function toggleSettings() {
+            var modal = document.getElementById("settings-modal");
+            if (modal.classList.contains("show-modal")) {
+                modal.classList.remove("show-modal");
+                setTimeout(function() {
+                    modal.style.display = "none";
+                }, 500); // Match the transition duration
+            } else {
+                modal.style.display = "block";
+                setTimeout(function() {
+                    modal.classList.add("show-modal");
+                }, 10); // A slight delay to allow the display to apply before starting the transition
+            }
+            setTeams();
+        }
     </script>
 </body>
 </html>
