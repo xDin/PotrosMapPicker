@@ -296,7 +296,7 @@ input {
     box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
 }
 
-
+/*   DIVIDE WHEEL IN 4 DIVIDE WHEEL IN 4  DIVIDE WHEEL IN 4 DIVIDE WHEEL IN 4  DIVIDE WHEEL IN 4  DIVIDE WHEEL IN 4    DIVIDE WHEEL IN 4     DIVIDE WHEEL IN 4 */
 
 .map-card.pick .info {
     background-color: #1e90ff; 
@@ -371,6 +371,7 @@ input {
     backdrop-filter: blur(0px);
     opacity: 0;
     transition: opacity 0.35s ease-in-out, backdrop-filter 0.35s ease-in-out;
+    
 }
 
 .modal.show-modal {
@@ -394,6 +395,7 @@ input {
     align-items: center; /* Center the contents horizontally */
     justify-content: center; /* Center the contents vertically */
     position: relative; /* Make the position relative for absolute positioning of the close button */
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
 }
 
 .close-button {
@@ -549,6 +551,7 @@ input {
     justify-content: center;
     position: relative;
     padding-top: 60px; /* Adjust to create space for the result text */
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
 }
 
 #roulette-wheel {
