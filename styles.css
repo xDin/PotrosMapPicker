@@ -47,7 +47,7 @@
     background-color: #1e90ff; 
 }
 .map-card.decider .info {
-    background-color: #bbbb1f;
+    background-color: rgb(220, 187, 31);
 }
 .undo-button, .set-teams-button, .roulette-button { 
     margin: 5px; 
@@ -304,7 +304,7 @@ input {
 }
 
 .map-card.decider .info {
-    background-color: #bbbb1f;
+    background-color: #dcbb1f;
     box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
 }
 
