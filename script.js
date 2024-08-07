@@ -261,7 +261,7 @@ function spinRoulette() {
         resultText.textContent = `${chosenTeam} va primero.`;
 
         setTeams();
-    }, 8050); // Match the animation duration and the reset timeout
+    }, 7950); // Match the animation duration and the reset timeout
 }
 
 renderMapButtons();
