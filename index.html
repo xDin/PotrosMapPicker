@@ -42,7 +42,6 @@
                 </div>
             </div>
             <div class="button-group">
-                <button class="set-teams-button" onclick="setTeams()">Establecer Equipos</button>
                 <button class="roulette-button" onclick="toggleRoulette()">Decidir con Ruleta</button>
             </div>
         </div>
@@ -87,21 +86,6 @@
             speed: 0.50,
             zoom: 1.10,
         });
-
-        function toggleSettings() {
-            var modal = document.getElementById("settings-modal");
-            if (modal.classList.contains("show-modal")) {
-                modal.classList.remove("show-modal");
-                setTimeout(function() {
-                    modal.style.display = "none";
-                }, 500); // Match the transition duration
-            } else {
-                modal.style.display = "block";
-                setTimeout(function() {
-                    modal.classList.add("show-modal");
-                }, 10); // A slight delay to allow the display to apply before starting the transition
-            }
-        }
     </script>
 </body>
 </html>

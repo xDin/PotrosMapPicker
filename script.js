@@ -196,7 +196,21 @@ function renderResults() {
     });
 }
 
-
+function toggleSettings() {
+    setTeams();
+    var modal = document.getElementById("settings-modal");
+    if (modal.classList.contains("show-modal")) {
+        modal.classList.remove("show-modal");
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 500); // Match the transition duration
+    } else {
+        modal.style.display = "block";
+        setTimeout(function() {
+            modal.classList.add("show-modal");
+        }, 10); // A slight delay to allow the display to apply before starting the transition
+    }
+}
 function pickSide(index, side) {
     results[index].side = side === 'Ataque' ? 'atacar' : 'defender';
     sideDecisions++; // Increment side decisions count
@@ -207,20 +221,21 @@ function pickSide(index, side) {
 }
 
 function toggleRoulette() {
-    const teamAName = document.getElementById('team_b').value;
-    const teamBName = document.getElementById('team_a').value;
-    document.getElementById('team-a-name').textContent = teamAName;
-    document.getElementById('team-b-name').textContent = teamBName;
-    var modal = document.getElementById("roulette-modal");
     if (modal.classList.contains("show-modal")) {
         modal.classList.remove("show-modal");
         setTimeout(function() {
             modal.style.display = "none";
+            
         }, 500);
     } else {
         modal.style.display = "block";
         setTimeout(function() {
             modal.classList.add("show-modal");
+            const teamAName = document.getElementById('team_b').value;
+            const teamBName = document.getElementById('team_a').value;
+            document.getElementById('team-a-name').textContent = teamAName;
+            document.getElementById('team-b-name').textContent = teamBName;
+            var modal = document.getElementById("roulette-modal");
         }, 10);
     }
 }
