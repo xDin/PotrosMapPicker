@@ -50,8 +50,8 @@ function selectMap(map) {
         action = `Ban - Turno de ${teamA}`;
         displayAction = `Ban - ${teamA}`;
     } else if (results.length == 6) {
-        action = 'Mapa Decisor';
-        displayAction = 'Mapa Decisor';
+        action = 'Mapa Decisivo';
+        displayAction = 'Mapa Decisivo';
         sidePickers.push(teamB); // Team B picks the side for the decider
     }
     results.push({ action, displayAction, map, picker: sidePickers[sidePickers.length - 1] });
@@ -93,7 +93,7 @@ function undoLast() {
             if (last.action.includes('Lado')) {
                 sideDecisions--;
                 sidePickers.pop();
-            } else if (last.action.includes('Pick') || last.action === 'Mapa Decisor') {
+            } else if (last.action.includes('Pick') || last.action === 'Mapa Decisivo') {
                 sidePickers.pop();
 
                 // Check if the action before the last one was a side pick
@@ -119,7 +119,7 @@ function updateTurnIndicator() {
         `Pick - Turno de ${teamA}`, `Lado - ${teamB} elige lado`, 
         `Pick - Turno de ${teamB}`, `Lado - ${teamA} elige lado`,
         `Ban - Turno de ${teamB}`, `Ban - Turno de ${teamA}`,
-        `Mapa Decisor`, `Lado - ${teamB} elige lado`
+        `Mapa Decisivo`, `Lado - ${teamB} elige lado`
     ];
     const turnIndex = results.length + sideDecisions;
     if (turnIndex < turns.length) {
@@ -131,7 +131,7 @@ function updateTurnIndicator() {
         } else if (turns[turnIndex].includes('Lado')) {
             turnIndicator.style.color = '#32CD32'; // Green for side pick
             renderMapButtons(true); // Disable map buttons
-        } else if (turns[turnIndex] === 'Mapa Decisor') {
+        } else if (turns[turnIndex] === 'Mapa Decisivo') {
             turnIndicator.style.color = '#bbbb1f'; // Yellow for decider
         }
     } else {
@@ -152,7 +152,7 @@ function renderResults() {
         mapCard.style.backgroundImage = `url('${result.map}.webp')`;
         if (result.action.includes('Ban')) {
             mapCard.classList.add('ban');
-        } else if (result.action.includes('Pick') || result.action === 'Mapa Decisor') {
+        } else if (result.action.includes('Pick') || result.action === 'Mapa Decisivo') {
             mapCard.classList.add(result.action.includes('Pick') ? 'pick' : 'decider');
         }
 
@@ -168,7 +168,7 @@ function renderResults() {
         mapCard.appendChild(info);
         mapCardContainer.appendChild(mapCard);
 
-        if (result.action.includes('Pick') || result.action === 'Mapa Decisor') {
+        if (result.action.includes('Pick') || result.action === 'Mapa Decisivo') {
             if (!result.side) {
                 const sidePickButtons = document.createElement('div');
                 sidePickButtons.className = 'side-pick-buttons';

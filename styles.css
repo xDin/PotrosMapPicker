@@ -65,16 +65,6 @@
 .undo-button:hover, .set-teams-button:hover { 
     background-color: #da190b; 
 }
-input { 
-    margin: 5px; 
-    padding: 10px; 
-    background-color: #424242; 
-    border: none; 
-    color: white;
-    border-radius: 5px;
-    max-width: 300px; /* Set a max-width for the input fields */
-    width: 100%;
-}
 
 .team-inputs label {
     font-size: 18px;
@@ -138,24 +128,11 @@ body {
     gap: 5px;
 }
 
-.input-group input {
-    width: 200px; /* Set a wider width for the input fields */
-    padding: 10px; /* Increase padding for a larger input field */
-    font-size: 16px; /* Adjust font size if necessary */
-}
-
 
 
 .input-group label {
     font-size: 16px;
     font-weight: bold;
-}
-
-.input-group input {
-    padding: 5px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
 }
 
 input { 
@@ -453,7 +430,7 @@ input {
     width: 80%; /* Adjust width to ensure it does not take the full width */
     padding: 10px;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #ccc;
     background-color: #424242;
     color: white;
@@ -498,7 +475,6 @@ input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
     background-color: #424242;
     color: white;
     font-size: 16px;
