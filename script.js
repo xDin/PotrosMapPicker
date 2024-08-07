@@ -206,5 +206,64 @@ function pickSide(index, side) {
     renderMapButtons(false); // Enable map buttons
 }
 
+function toggleRoulette() {
+    const teamAName = document.getElementById('team_b').value;
+    const teamBName = document.getElementById('team_a').value;
+    document.getElementById('team-a-name').textContent = teamAName;
+    document.getElementById('team-b-name').textContent = teamBName;
+    var modal = document.getElementById("roulette-modal");
+    if (modal.classList.contains("show-modal")) {
+        modal.classList.remove("show-modal");
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 500);
+    } else {
+        modal.style.display = "block";
+        setTimeout(function() {
+            modal.classList.add("show-modal");
+        }, 10);
+    }
+}
+function spinRoulette() {
+    const teamAName = document.getElementById('team_a').value;
+    const teamBName = document.getElementById('team_b').value;
+    const rouletteWheel = document.getElementById('roulette-wheel');
+    const resultText = document.getElementById('result');
+    
+    const minSpins = 5; // Minimum number of full rotations
+    const maxSpins = 6; // Maximum number of full rotations
+    const randomSpins = Math.random() * (maxSpins - minSpins) + minSpins;
+    const randomDegrees = randomSpins * 360; // Calculate the total degrees to spin
+
+    // Reset the transition and transform properties for the next spin
+    rouletteWheel.style.transition = 'none';
+    rouletteWheel.style.transform = `rotate(0deg)`;
+    resultText.textContent = ""; // Clear previous result
+
+    // Use a timeout to ensure the reset properties take effect
+    setTimeout(() => {
+        rouletteWheel.style.transition = 'transform 8s cubic-bezier(0.1, 1, 0.7, 1)';
+        rouletteWheel.style.transform = `rotate(${randomDegrees}deg)`;
+    }, 50);
+
+    setTimeout(() => {
+        const endRotation = randomDegrees % 360; // Get the final rotation within one circle
+        const normalizedRotation = (endRotation / 360).toFixed(2); // Normalize to a value between 0 and 1
+
+        // Determine the chosen team based on the normalized rotation
+        const teamNames = [teamAName, teamBName];
+        const chosenTeam = normalizedRotation < 0.5 ? teamNames[1] : teamNames[0];
+        const otherTeam = normalizedRotation < 0.5 ? teamNames[0] : teamNames[1];
+
+        document.getElementById('team_a').value = chosenTeam;
+        document.getElementById('team_b').value = otherTeam;
+
+        resultText.textContent = `${chosenTeam} va primero.`;
+
+        setTeams();
+    }, 8050); // Match the animation duration and the reset timeout
+}
+
 renderMapButtons();
 updateTurnIndicator();
+

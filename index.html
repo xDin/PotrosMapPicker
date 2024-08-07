@@ -41,23 +41,24 @@
                     <input type="text" id="team_b" value="Equipo B">
                 </div>
             </div>
-            <button class="set-teams-button" onclick="setTeams()">Establecer Equipos</button>
+            <div class="button-group">
+                <button class="set-teams-button" onclick="setTeams()">Establecer Equipos</button>
+                <button class="roulette-button" onclick="toggleRoulette()">Decidir con Ruleta</button>
+            </div>
         </div>
-        
     </div>
-    <!--
-    <div class="team-inputs">
-        <div class="input-group">
-            <label for="team_a">Equipo A:</label>
-            <input type="text" id="team_a" value="Equipo A">
+    <div id="roulette-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleRoulette()">&times;</span>
+            <div id="result"></div>
+            <div id="arrow"></div>
+            <div id="roulette-wheel">
+                <div class="half red"><span id="team-a-name"> </span></div>
+                <div class="half blue"><span id="team-b-name"> </span></div>
+            </div>
+            <button class="spin-button" onclick="spinRoulette()">Girar Ruleta</button>
         </div>
-        <div class="input-group">
-            <label for="team_b">Equipo B:</label>
-            <input type="text" id="team_b" value="Equipo B">
-        </div>
-       
-    </div> -->
-    
+    </div>
     
     <div class="map-buttons-container" id="map-buttons">
         <!-- Map buttons will be inserted here -->
@@ -86,8 +87,7 @@
             speed: 0.50,
             zoom: 1.10,
         });
-    </script>
-    <script>
+
         function toggleSettings() {
             var modal = document.getElementById("settings-modal");
             if (modal.classList.contains("show-modal")) {
@@ -102,9 +102,6 @@
                 }, 10); // A slight delay to allow the display to apply before starting the transition
             }
         }
-        </script>
-        
-        
-        
+    </script>
 </body>
 </html>
