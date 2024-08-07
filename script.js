@@ -230,8 +230,8 @@ function spinRoulette() {
     const rouletteWheel = document.getElementById('roulette-wheel');
     const resultText = document.getElementById('result');
     
-    const minSpins = 5; // Minimum number of full rotations
-    const maxSpins = 6; // Maximum number of full rotations
+    const minSpins = 20; // Minimum number of full rotations
+    const maxSpins = 21; // Maximum number of full rotations
     const randomSpins = Math.random() * (maxSpins - minSpins) + minSpins;
     const randomDegrees = randomSpins * 360; // Calculate the total degrees to spin
 
@@ -242,7 +242,7 @@ function spinRoulette() {
 
     // Use a timeout to ensure the reset properties take effect
     setTimeout(() => {
-        rouletteWheel.style.transition = 'transform 8s cubic-bezier(0.1, 1, 0.7, 1)';
+        rouletteWheel.style.transition = 'transform 10s cubic-bezier(0.1, 1, 0.7, 1)';
         rouletteWheel.style.transform = `rotate(${randomDegrees}deg)`;
     }, 50);
 
@@ -261,7 +261,7 @@ function spinRoulette() {
         resultText.textContent = `${chosenTeam} va primero.`;
 
         setTeams();
-    }, 7950); // Match the animation duration and the reset timeout
+    }, 9900); // Match the animation duration and the reset timeout
 }
 
 renderMapButtons();
