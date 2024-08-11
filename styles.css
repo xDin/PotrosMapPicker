@@ -560,52 +560,78 @@ input {
     border: 5px solid #000;
     border-radius: 50%;
     margin: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
     overflow: hidden;
-    text-align: center;
-    color: white;
+}
+
+#roulette-wheel .quarter {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    background-color: #f44336; /* Default to red */
+    transform-origin: 100% 100%;
+}
+
+#roulette-wheel .quarter:nth-child(1) {
+    background-color: #f44336;
+    transform: rotate(0deg);
+}
+
+#roulette-wheel .quarter:nth-child(2) {
+    background-color: #1e90ff;
+    transform: rotate(90deg);
+}
+
+#roulette-wheel .quarter:nth-child(3) {
+    background-color: #f44336;
+    transform: rotate(180deg);
+}
+
+#roulette-wheel .quarter:nth-child(4) {
+    background-color: #1e90ff;
+    transform: rotate(270deg);
+}
+
+#team-a-name1, #team-a-name2, #team-b-name1, #team-b-name2 {
+    position: absolute;
     font-size: 20px;
     font-weight: bold;
-}
-
-#roulette-wheel .half {
-    width: 50%;
-    height: 100%;
-    position: absolute;
-    top: 0;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-align: center; /* Center the text horizontally */
+    line-height: 1; /* Ensure the line height is normal */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* Vertically center the text */
+    justify-content: center; /* Horizontally center the text */
+    width: 100px; /* Set a fixed width */
+    height: 40px; /* Set a fixed height to ensure vertical centering */
+    transform-origin: center;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+#team-a-name1 {
+    top: 25%;
+    left: 75%;
+    transform: rotate(45deg) translate(-50%, 50%);
 }
 
-#roulette-wheel .half.red {
-    background-color: #f44336;
-    left: 0;
-    border-top-left-radius: 150px;
-    border-bottom-left-radius: 150px;
+#team-b-name1 {
+    top: 75%;
+    left: 75%;
+    transform: rotate(135deg) translate(15%, 100%);
 }
 
-#roulette-wheel .half.blue {
-    background-color: #1e90ff;
-    right: 0;
-    border-top-right-radius: 150px;
-    border-bottom-right-radius: 150px;
-}
-
-#team-a-name {
-    position: absolute;
-    transform: rotate(-90deg);
+#team-a-name2 {
+    top: 75%;
     left: 25%;
+    transform: rotate(-135deg) translate(50%, -50%);
 }
 
-#team-b-name {
-    position: absolute;
-    transform: rotate(90deg);
-    right: 25%;
+#team-b-name2 {
+    top: 25%;
+    left: 25%;
+    transform: rotate(-45deg) translate(-25%, -125%);
 }
+
 
 #arrow {
     position: absolute;

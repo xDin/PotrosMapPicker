@@ -205,12 +205,16 @@ function pickSide(index, side) {
     updateTurnIndicator(); // Move to the next turn after picking the side
     renderMapButtons(false); // Enable map buttons
 }
-
 function toggleRoulette() {
-    const teamAName = document.getElementById('team_b').value;
-    const teamBName = document.getElementById('team_a').value;
-    document.getElementById('team-a-name').textContent = teamAName;
-    document.getElementById('team-b-name').textContent = teamBName;
+    const teamAName = document.getElementById('team_a').value;
+    const teamBName = document.getElementById('team_b').value;
+
+    // Alternate the names between the quarters
+    document.getElementById('team-a-name1').textContent = teamAName;
+    document.getElementById('team-b-name1').textContent = teamBName;
+    document.getElementById('team-a-name2').textContent = teamAName;
+    document.getElementById('team-b-name2').textContent = teamBName;
+
     var modal = document.getElementById("roulette-modal");
     if (modal.classList.contains("show-modal")) {
         modal.classList.remove("show-modal");
@@ -224,6 +228,8 @@ function toggleRoulette() {
         }, 10);
     }
 }
+
+
 function spinRoulette() {
     const teamAName = document.getElementById('team_a').value;
     const teamBName = document.getElementById('team_b').value;
@@ -250,19 +256,28 @@ function spinRoulette() {
         const endRotation = randomDegrees % 360; // Get the final rotation within one circle
         const normalizedRotation = (endRotation / 360).toFixed(2); // Normalize to a value between 0 and 1
 
-        // Determine the chosen team based on the normalized rotation
-        const teamNames = [teamAName, teamBName];
-        const chosenTeam = normalizedRotation < 0.5 ? teamNames[1] : teamNames[0];
-        const otherTeam = normalizedRotation < 0.5 ? teamNames[0] : teamNames[1];
-
-        document.getElementById('team_a').value = chosenTeam;
-        document.getElementById('team_b').value = otherTeam;
+        // Determine the chosen team based on the normalized rotation for four quarters
+        let chosenTeam;
+        if (normalizedRotation >= 0 && normalizedRotation < 0.25) {
+            chosenTeam = teamBName; // First quarter
+        } else if (normalizedRotation >= 0.25 && normalizedRotation < 0.5) {
+            chosenTeam = teamAName; // Second quarter
+        } else if (normalizedRotation >= 0.5 && normalizedRotation < 0.75) {
+            chosenTeam = teamBName; // Third quarter
+        } else {
+            chosenTeam = teamAName; // Fourth quarter
+        }
 
         resultText.textContent = `${chosenTeam} va primero.`;
+
+        // Set the selected team in the inputs
+        document.getElementById('team_a').value = chosenTeam;
+        document.getElementById('team_b').value = chosenTeam === teamAName ? teamBName : teamAName;
 
         setTeams();
     }, 9900); // Match the animation duration and the reset timeout
 }
+
 
 renderMapButtons();
 updateTurnIndicator();
