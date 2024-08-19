@@ -668,3 +668,27 @@ input {
 .spin {
     animation: spin 4s ease-out;
 }
+
+
+
+
+
+@keyframes slideIn {
+    from {
+        transform: translateY(25%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.map-card-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    width: 175px; /* Set fixed width */
+    align-items: center; /* Center the cards */
+    
+}

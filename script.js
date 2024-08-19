@@ -147,6 +147,14 @@ function renderResults() {
         const mapCardContainer = document.createElement('div');
         mapCardContainer.className = 'map-card-container';
 
+        // Determine if the card is being updated (like after choosing a side) or newly added
+        const existingCard = result.side ? true : false;
+
+        // Only apply the slide-in animation to the newly created card, not when updating an existing card
+        if (!existingCard && index === results.length - 1) {
+            mapCardContainer.style.animation = 'slideIn 0.5s ease-out';
+        }
+
         const mapCard = document.createElement('div');
         mapCard.className = 'map-card';
         mapCard.style.backgroundImage = `url('${result.map}.webp')`;
@@ -195,6 +203,7 @@ function renderResults() {
         selectedMapsList.appendChild(mapCardContainer);
     });
 }
+
 
 
 function pickSide(index, side) {
@@ -276,6 +285,35 @@ function spinRoulette() {
 
         setTeams();
     }, 9900); // Match the animation duration and the reset timeout
+}
+function addMapCard(map, action) {
+    const selectedMapsList = document.getElementById('selected-maps-list');
+
+    const mapCardContainer = document.createElement('div');
+    mapCardContainer.className = 'map-card-container';
+    
+    // Apply the slide-in animation to the newly created card
+    mapCardContainer.style.animation = 'slideIn 0.5s ease-out';
+
+    // Create the map card element and add it to the container
+    const mapCard = document.createElement('div');
+    mapCard.className = `map-card ${action.toLowerCase()}`;
+    mapCard.style.backgroundImage = `url('${map}.webp')`;
+
+    const mapName = document.createElement('div');
+    mapName.className = 'map-name';
+    mapName.textContent = map;
+
+    const info = document.createElement('div');
+    info.className = 'info';
+    info.textContent = `${action} - ${map}`;
+
+    mapCard.appendChild(mapName);
+    mapCard.appendChild(info);
+    mapCardContainer.appendChild(mapCard);
+
+    // Append the card container to the list
+    selectedMapsList.appendChild(mapCardContainer);
 }
 
 
