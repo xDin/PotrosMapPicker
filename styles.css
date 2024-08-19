@@ -675,7 +675,7 @@ input {
 
 @keyframes slideIn {
     from {
-        transform: translateY(25%);
+        transform: translateY(-25%);
         opacity: 0;
     }
     to {
