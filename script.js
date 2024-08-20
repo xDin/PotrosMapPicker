@@ -1,4 +1,4 @@
-let maps = ["Ascent", "Bind", "Icebox", "Lotus", "Sunset", "Haven", "Abyss"];
+let maps = ["Abyss", "Ascent", "Bind", "Haven", "Icebox", "Lotus", "Sunset"];
 let results = [];
 let teamA = "Equipo A";
 let teamB = "Equipo B";
