@@ -62,54 +62,58 @@ function selectMap(map) {
     updateTurnIndicator();
 }
 function undoLast() {
-    if (history.length > 0) {
-        const turnIndicator = document.getElementById('turn-indicator').textContent;
+    if (history.length === 0) return;
 
-        // Check if the current state is "Completado"
-        if (turnIndicator === 'Completado') {
-            // Pop the last two actions if "Completado"
-            const last = history.pop();
-            const previous = history.pop();
-            
-            results = results.filter(r => r.map !== last.map);
-            results = results.filter(r => r.map !== previous.map);
-            maps = previous.maps;
+    const turnIndicator = document.getElementById('turn-indicator').textContent;
 
-            // Adjust side decisions and side pickers
+    // Helper to remove side information from a map result
+    const clearSide = (map) => {
+        const res = results.find(r => r.map === map);
+        if (res) delete res.side;
+    };
+
+    if (turnIndicator === 'Completado') {
+        // In the completed state the last action is always a side pick for the decider
+        const last = history.pop(); // side pick
+        const previous = history.pop(); // decider pick
+
+        clearSide(last.map);
+        sideDecisions--;
+        sidePickers.pop();
+
+        results = results.filter(r => r.map !== previous.map);
+        maps = previous.maps;
+        sidePickers.pop();
+    } else {
+        const last = history.pop();
+
+        if (last.action.includes('Lado')) {
+            // Undo side selection only
+            clearSide(last.map);
             sideDecisions--;
             sidePickers.pop();
-            if (previous.action.includes('Lado')) {
-                sideDecisions--;
-                sidePickers.pop();
-            }
-
         } else {
-            // Normal undo logic
-            const last = history.pop();
+            // Undo pick/ban action
             results = results.filter(r => r.map !== last.map);
             maps = last.maps;
 
-            // Check if the last action was a side pick
-            if (last.action.includes('Lado')) {
-                sideDecisions--;
-                sidePickers.pop();
-            } else if (last.action.includes('Pick') || last.action === 'Mapa Decisivo') {
+            if (last.action.includes('Pick') || last.action === 'Mapa Decisivo') {
                 sidePickers.pop();
 
-                // Check if the action before the last one was a side pick
+                // If there was a side selection for this map, remove it as well
                 if (history.length > 0 && history[history.length - 1].action.includes('Lado')) {
                     const previous = history.pop();
-                    results = results.filter(r => r.map !== previous.map);
-                    maps = previous.maps;
+                    clearSide(previous.map);
                     sideDecisions--;
+                    sidePickers.pop();
                 }
             }
         }
-
-        renderResults();
-        renderMapButtons();
-        updateTurnIndicator();
     }
+
+    renderResults();
+    renderMapButtons();
+    updateTurnIndicator();
 }
 
 function updateTurnIndicator() {
