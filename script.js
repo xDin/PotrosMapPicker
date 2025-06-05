@@ -129,18 +129,18 @@ function updateTurnIndicator() {
     if (turnIndex < turns.length) {
         turnIndicator.textContent = `${turns[turnIndex]}`;
         if (turns[turnIndex].includes('Ban')) {
-            turnIndicator.style.color = '#ff6347'; // Red for ban
+            turnIndicator.style.color = 'var(--ban-color)';
         } else if (turns[turnIndex].includes('Pick')) {
-            turnIndicator.style.color = '#1e90ff'; // Blue for pick
+            turnIndicator.style.color = 'var(--secondary-color)';
         } else if (turns[turnIndex].includes('Lado')) {
-            turnIndicator.style.color = '#32CD32'; // Green for side pick
+            turnIndicator.style.color = 'var(--side-color)';
             renderMapButtons(true); // Disable map buttons
         } else if (turns[turnIndex] === 'Mapa Decisivo') {
-            turnIndicator.style.color = '#bbbb1f'; // Yellow for decider
+            turnIndicator.style.color = 'var(--decider-color)';
         }
     } else {
         turnIndicator.textContent = `Completado`;
-        turnIndicator.style.color = '#bbbb1f'; // Yellow for completed
+        turnIndicator.style.color = 'var(--decider-color)';
     }
 }
 
